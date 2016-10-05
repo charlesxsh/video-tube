@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Video Library</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <script src="css/semantic.js"></script>
+</head>
+
+<style>
+    body {
+        margin: 8px;
+    }
+    
+    video {
+        display: block;
+        margin: auto;
+        width: 60%;
+    }
+</style>
+
+<script>
+        function change_video(id) {
+            var v = document.getElementById("player");
+            v.src = id;
+            v.load();
+            v.play();
+        }
+    </script>
+
+<body>
+    <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="#" class="header item">
+        Video Library
+      </a>
+    </div>
+  </div>
+    <video id="player" src="/830.mp4" controls>
+    </video>
+
+<div class="ui middle aligned selection animated list segment">
+  <div class="item">
+    <div class="content">
+      <div class="header">830</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="content">
+      <div class="header">831</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="content">
+      <div class="header">832</div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
