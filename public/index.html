@@ -2,63 +2,72 @@
 <html lang="en">
 
 <head>
-    <title>Video Library</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/semantic.css">
-    <script src="css/semantic.js"></script>
+  <title>Video Library</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/semantic.css">
+  <script src="css/semantic.js"></script>
+  
 </head>
 
 <style>
-    body {
-        margin: 8px;
-    }
-    
-    video {
-        display: block;
-        margin: auto;
-        width: 60%;
-    }
+  body {
+    margin: 8px;
+  }
+  
+  video {
+    display: block;
+    width: 100%;
+    margin-top: 4em;
+  }
 </style>
 
-<script>
-        function change_video(id) {
-            var v = document.getElementById("player");
-            v.src = id;
-            v.load();
-            v.play();
-        }
-    </script>
+
+
 
 <body>
-    <div class="ui fixed inverted menu">
+  <div class="ui fixed inverted menu">
     <div class="ui container">
-      <a href="#" class="header item">
+      <a class="header item">
         Video Library
       </a>
     </div>
   </div>
-    <video id="player" src="/830.mp4" controls>
-    </video>
+  <video id="player" type='video/x-matroska; codecs="theora, vorbis"' controls>
+  </video>
 
-<div class="ui middle aligned selection animated list segment">
-  <div class="item">
-    <div class="content">
-      <div class="header">830</div>
+  <div class="ui segment">
+    <div class="ui middle aligned selection animated list">
+      <div id="test" class="item" >
+        <div class="right floated content">
+          <div class="ui button">Download</div>
+        </div>
+        <div class="content">
+          <div class="header">6</div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="item">
-    <div class="content">
-      <div class="header">831</div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="content">
-      <div class="header">832</div>
-    </div>
-  </div>
-</div>
-
 </body>
+
+<script>
+        $(".list .item").click( function(event){
+            var header = event.target.parentNode.querySelector('.content .header');
+            var v = document.getElementById("player");
+            v.src = '/online/'+header.innerText;
+            v.load();
+        });
+
+        $('.list .item .button').click(function(event){
+          event.stopPropagation();
+          var item = event.target.parentNode.parentNode;
+          var header = item.querySelector('.content .header');
+          console.log('download '+header.innerText);
+          window.open('/download/'+header.innerText);
+           //$.get("/download/"+header.innerText);
+        });
+    </script>
+
 
 </html>
